@@ -1,57 +1,33 @@
-class Pila:
-    def __init__(self):
-        self.items=[]
+from pila import *
+from arbol import *
 
-    def apilar(self,dato):
-        self.items.append(dato)
-
-    def desapilar(self):
-        return self.items.pop()
-
-    def pilaVacia(self):
-        return self.items == []
-
-
-class Nodo():
-    def __init__(self,valor,izq=None,der=None):
-        self.valor=valor
-        self.izq=izq
-        self.der=der
+def convertir(lista, pila):
+    if lista != []:
+        if lista[0] in "+-*/":
+            nodo_der = pila.desapilar()
+            nodo_izq = pila.desapilar()
+            pila.apilar(Nodo(lista[0],nodo_izq,nodo_der))
+        else:
+            pila.apilar(Nodo(lista[0]))
+        return convertir(lista[1:],pila)
+            
 
 def evaluar(arbol):
-    if arbol.valor=="+":
-        return evaluar(arbol.izq)+evaluar(arbol.der)
-    if arbol.valor=="-":
-        return evaluar(arbol.izq)-evaluar(arbol.der)
-    if arbol.valor=="*":
-        return evaluar(arbol.izq)*evaluar(arbol.der)
-    if arbol.valor=="/":
-        return evaluar(arbol.izq)/ evaluar(arbol.der)
+    if arbol.valor == "+":
+        return evaluar(arbol.izq) + evaluar(arbol.der)
+    if arbol.valor == "-":
+        return evaluar(arbol.izq) - evaluar(arbol.der)
+    if arbol.valor == "/":
+        return evaluar(arbol.izq) / evaluar(arbol.der)
+    if arbol.valor == "*":
+        return evaluar(arbol.izq) * evaluar(arbol.der)
     return int(arbol.valor)
+    
+exp = raw_input("ingrese l expresion en posfija: ").split(" ")
+print exp
+pila = Pila()
 
+convertir(exp, pila)
 
-def armarArbol(pila):
-   
-    auxPila=Pila()
-    izq, der, valor=None,None,""
-    while not len (pila)==0:
-       
-        valor=pila.pop(0)
-        if valor in "+-*/":
-            der=auxPila.desapilar()
-            izq=auxPila.desapilar()
-            auxPila.apilar(Nodo(valor,izq,der))
-        else:
-                auxPila.apilar(Nodo(valor))
-   
-    return auxPila.desapilar()
-                
+print evaluar(pila.desapilar())
 
-        
-def prueba(linea):
-    pilaCad=linea.split(" ")
-    print evaluar(armarArbol(pilaCad))
-
-
-
-               
