@@ -29,22 +29,26 @@ def atenderPaciente(cola):
 
     #print cola.desencolar().prioridad
     while cola.colaVacia() != True:
-        print cola.desencolar().prioridad
-        if cola.desencolar().prioridad==1:
-            colaP1.encolar(cola.desencolar())
-        elif cola.desencolar().prioridad==2:
-            colaP2.encolar(cola.desencolar())
+        #print cola.desencolar().prioridad
+        paciente=cola.desencolar()
+        if paciente.prioridad==1:
+            #print "Encolado P1"
+            colaP1.encolar(paciente)
+        elif paciente.prioridad==2:
+            #print "Encolado P2"
+            colaP2.encolar(paciente)
         else:
-            colaP3.encolar(cola.desencolar())
+            #print "Encolado P3"
+            colaP3.encolar(paciente)
 
-    print "Cola prioridad 1"
+    print "COLA PRIORIDAD 1:"
     while colaP1.colaVacia()!= True:
         print colaP1.desencolar().nombre
-    print "Cola prioridad 2"
+    print "COLA PRIORIDAD 2"
     while colaP2.colaVacia()!= True:
         print colaP2.desencolar().nombre
-    print "Cola prioridad 3"
-    while colaP1.colaVacia()!= True:
+    print "COLA PRIORIDAD 3"
+    while colaP3.colaVacia()!= True:
         print colaP3.desencolar().nombre              
     
             
@@ -70,6 +74,7 @@ paciente=Paciente("David",2)
 col.encolar(paciente)
 paciente=Paciente("Stevens",3)
 col.encolar(paciente)
+
 #print col.desencolar().prioridad
 atenderPaciente(col)
 
