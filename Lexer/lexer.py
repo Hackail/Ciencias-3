@@ -20,13 +20,14 @@ t_DIVIDE = r'/'
 t_EQUALS = r':='
 t_NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
 
-
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_]*'
     if str(t.value) in reserved:
         t.type = reserved[ t.value ]
-    return t
-
+        return t
+    else:
+        t.lexer.skip(1)
+    
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
@@ -37,10 +38,10 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-
+archivo=open("archivo.txt")
 lex.lex() # Build the lexer
 
-lex.input("x := 3 - 4 + 5 * 6 if")
+lex.input(open("archivo.txt").read())
 while True:
     tok = lex.token()
     if not tok: 
