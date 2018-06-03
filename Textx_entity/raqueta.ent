@@ -1,0 +1,19 @@
+entity Raqueta {
+  velocidad : integer       
+  control : integer       
+  cauchoNegro: CauchoNegro  
+  desc : string       
+  cauchoRojo : CauchoRojo       
+}                    
+
+entity CauchoNegro {
+  velocidad : integer
+  control : integer
+  desc : string
+}
+
+entity CauchoRojo {
+  velocidad : integer
+  control : integer
+  desc : string
+}

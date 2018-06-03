@@ -1,0 +1,48 @@
+// template for add form view
+<div ng-controller="EditarRaquetaCtrl">
+  <div class="jumbotron text-center">
+  <h2>{{ title }}</h2>
+  <hr>
+  <p>{{ message }}</p>
+
+  <form name="RaquetaForm" class="form-horizontal" ng-init="load(id)">
+    <div class="form-group">
+      <label for="velocidad" class="col-sm-2 control-label">Velocidad</label>
+      <div class="col-sm-10">
+        <input name="velocidad" type="text" ng-model="Raqueta.velocidad" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="control" class="col-sm-2 control-label">Control</label>
+      <div class="col-sm-10">
+        <input name="control" type="text" ng-model="Raqueta.control" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cauchoNegro" class="col-sm-2 control-label">Cauchonegro</label>
+      <div class="col-sm-10">
+        <input name="cauchoNegro" type="text" ng-model="Raqueta.cauchoNegro" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="desc" class="col-sm-2 control-label">Desc</label>
+      <div class="col-sm-10">
+        <input name="desc" type="text" ng-model="Raqueta.desc" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cauchoRojo" class="col-sm-2 control-label">Cauchorojo</label>
+      <div class="col-sm-10">
+        <input name="cauchoRojo" type="text" ng-model="Raqueta.cauchoRojo" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" ng-click="cancel()" value="Cancelar" class="btn btn-primary"/>
+        <input type="submit" ng-click="edit(id)" value="Guardar" class="btn btn-success"/>
+      </div>
+    </div>
+  </form>
+  <pre>Raqueta = {{Raqueta}} | json}}</pre>
+  </div>
+</div>

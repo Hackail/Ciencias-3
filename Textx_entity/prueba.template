@@ -1,0 +1,19 @@
+class {{entity.name|capitalize}}:
+  
+    def __init__(self, {% for property in entity.properties %} {{property.name}}, {% endfor %} machetazo):
+        {% for property in entity.properties %}
+        self.{{property.name}}= {{property.name}}
+        {% endfor %}
+        self.achetazo=machetazo
+    
+    {% for property in entity.properties %}
+    def get{{property.name|capitalize}}(self):
+        return self.{{property.name}}
+    
+    {% endfor %}
+
+    {% for property in entity.properties %}
+    def set{{property.name|capitalize}}(self, {{property.name}}):
+        self.{{property.name}} = {{property.name}}
+    
+   {% endfor %}
